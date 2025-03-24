@@ -131,24 +131,22 @@
 </head>
 
 <body>
-
-    <div id="container">
+   <div id="container">
         <div id="title">鱼的腥味从何而来？</div>
-        <video id="player" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450">
-            <source src="6.mp4" type="video/mp4">
-            您的浏览器不支持HTML5视频播放。
-        </video>
+        <div id="player"></div>
         <div id="button-row">
             <button id="likeButton">点赞</button>
             <button id="coinButton">投币</button>
             <button id="collectButton">收藏</button>
             <button id="shareButton">转发</button>
-            <button id="aiButton">AI小助手</button>
+            <button id="aiButton">
+                AI小助手
+            </button>
         </div>
         <hr class="divider">
         <p style="color: skyblue; font-weight: bold;">视频简介</p>
         <p>鱼腥味到底从何而来呢，你别说还真挺复杂，一起来看看吧！</p>
-    </div>
+</div>
 
     <div id="popup">
         <span class="close-btn" onclick="closePopup()">×</span>
@@ -157,15 +155,23 @@
         <p class="small-text">鱼腥味的来源及其去腥的科学方法。鱼腥味主要来源于海鱼的蛋白质在高压环境下的变化，以及淡水鱼体内的土臭素和二甲基异雌醇。去腥的方法包括低温速冻技术、微生物去腥、清水养殖等。此外，视频还提到了一些日常生活中去腥的小技巧，如使用柠檬汁、去除鱼腩等。</p>
     </div>
 
-    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+    <script src="https://player.polyv.net/script/player.js"></script>
     <script>
-        var player = videojs('player', {
-            controlBar: {
-                playbackRateMenuButton: false // 移除播放速度控件
-            }
-        });
+        var player;
 
-        document.getElementById('aiButton').addEventListener('click', function () {
+        function initPlayer() {
+            player = polyvPlayer({
+                wrap: '#player',
+                width: '100%',
+                height: 450,
+                vid: 'g9e4d25871afa882f5f26dfe0986a3fc_g',
+                speed: false
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initPlayer);
+
+        document.getElementById('aiButton').addEventListener('click', function() {
             document.getElementById('popup').style.display = 'block';
         });
 
@@ -175,5 +181,5 @@
     </script>
 
 </body>
-
 </html>
+
